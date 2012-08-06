@@ -30,7 +30,7 @@ require_once 'scripts/functions.php';
 
 echo getVersion($_GET['name']);
 
-if($_GET['name'] == "client"){
+if(!empty($_GET['build'])){
     echo checkForGameUpdate($_GET['build']);
 }
 ?>

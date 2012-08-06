@@ -1,0 +1,9 @@
+RewriteEngine On
+RewriteBase / # Enter path to your AuthServ directory - / if in domain root directory
+RewriteRule ^update/client/(.*)$ update.php?name=client&build=$1
+RewriteRule ^update/server/new$ update.php?name=client&build=$1
+RewriteRule ^game/getversion/(.*)$ game/getversion.php?proxy=$1
+RewriteRule ^game/checkserver$ game/checkserver.php
+RewriteRule ^game/joinserver$ game/joinserver.php
+RewriteRule ^game/getcloak/(.*)$ game/getcloak.php?user=$1
+RewriteRule ^game/getskin/(.*)$ game/getskin.php?name=$1
