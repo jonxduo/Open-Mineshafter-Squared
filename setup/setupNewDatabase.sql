@@ -80,9 +80,9 @@ CREATE TABLE IF NOT EXISTS `Data` (
 --
 
 INSERT INTO `Data` (`property`, `value`) VALUES
-('client-version', '2.9'),
-('server-version', '2.2'),
-('latest-game-version', '1.0.0'),
+('client-version', '3.8.0'),
+('server-version', '3.8.0'),
+('latest-game-version', '1.3.2'),
 ('latest-game-build', '1321653290000');
 
 -- --------------------------------------------------------
@@ -108,12 +108,12 @@ CREATE TABLE IF NOT EXISTS `Downloads` (
 --
 
 INSERT INTO `Downloads` (`id`, `name`, `description`, `link`, `type`, `version`, `external`) VALUES
-(7, 'Windows Launcher', 'The Windows proxy client.', 'downloads/MineshafterSquared-Client.exe', 'client', 2.9, ''),
-(2, 'Server Proxy', 'The program that makes a Minecraft Server to use this Authentication Server ', 'downloads/MineshafterSquared-Server.jar', 'main', 2.2, ''),
+(7, 'Windows Launcher', 'The Windows proxy client.', 'downloads/MineshafterSquared-Client.exe', 'client', 3.8, ''),
+(2, 'Server Proxy', 'The program that makes a Minecraft Server to use this Authentication Server ', 'downloads/MineshafterSquared-Server.jar', 'main', 3.8, ''),
 (3, 'Authentication Server', 'PHP and MySQL based Minecraft Authentication Server', 'https://github.com/KayoticSully/Open-Mineshafter-Squared/zipball/master', 'main', 2, 'GitHub*'),
-(4, 'Source Code', 'Because this is open source', 'downloads/Source.zip', 'main', 1.2, ''),
-(5, 'Mac OSX Launcher', 'The Mac OS X proxy client', 'downloads/MineshafterSquared-Client.dmg', 'client', 2.9, ''),
-(6, 'Client Proxy Jar', 'The Mineshafter Squared Java app. (Not needed if you are using a launcher)', 'downloads/MineshafterSquared-Client.jar', 'client', 2.9, '');
+(4, 'Source Code', 'Because this is open source', 'downloads/Source.zip', 'main', 3.8, ''),
+(5, 'Mac OSX Launcher', 'The Mac OS X proxy client', 'downloads/MineshafterSquared-Client.dmg', 'client', 3.8, ''),
+(6, 'Client Proxy Jar', 'The Mineshafter Squared Java app. (Not needed if you are using a launcher)', 'downloads/MineshafterSquared-Client.jar', 'client', 3.8, '');
 
 -- --------------------------------------------------------
 
