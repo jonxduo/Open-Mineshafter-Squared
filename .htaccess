@@ -1,5 +1,5 @@
 RewriteEngine On
-RewriteBase / # Enter path to your AuthServ directory - / if in domain root directory
+#RewriteBase / Enable only if you run into problems
 RewriteRule ^update/client/(.*)$ update.php?name=client&build=$1
 RewriteRule ^update/server/new$ update.php?name=client&build=$1
 RewriteRule ^game/getversion/(.*)$ game/getversion.php?proxy=$1
