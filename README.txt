@@ -65,7 +65,8 @@ Table of Contents
 		1. the setup directory (these files are not needed after initial setup)
 		2. readme.txt (you can upload it if you want but there is no point)
 		3. license.txt (this is for your records there is no need to upload it)
-
+4. Final Part
+                Chmod 'skins', 'capes', 'game/skins', and 'game/capes' to 777
 You are DONE! Use your favorite web browser to make sure the site works.  It should
 look similar to http://www.mineshaftersquared.com/MSOpen
 
