@@ -111,8 +111,8 @@ INSERT INTO `Downloads` (`id`, `name`, `description`, `link`, `type`, `version`,
 (7, 'Windows Launcher', 'The Windows proxy client.', 'downloads/MineshafterSquared-Client.exe', 'client', 3.8, ''),
 (2, 'Server Proxy', 'The program that makes a Minecraft Server to use this Authentication Server ', 'downloads/MineshafterSquared-Server.jar', 'main', 3.8, ''),
 (3, 'Authentication Server', 'PHP and MySQL based Minecraft Authentication Server', 'https://github.com/KayoticSully/Open-Mineshafter-Squared/zipball/master', 'main', 2, 'GitHub*'),
-(4, 'Source Code', 'Because this is open source', 'downloads/Source.zip', 'main', 3.8, ''),
-(5, 'Mac OSX Launcher', 'The Mac OS X proxy client', 'downloads/MineshafterSquared-Client.dmg', 'client', 3.8, ''),
+(4, 'Source Code', 'Because this is open source', 'https://github.com/KayoticSully/Mineshafter-Squared-Proxy/zipball/master', 'main', 3.8, ''),
+(5, 'Mac OSX Launcher', 'The Mac OS X proxy client', 'downloads/MineshafterSquared-Client.zip', 'client', 3.8, ''),
 (6, 'Client Proxy Jar', 'The Mineshafter Squared Java app. (Not needed if you are using a launcher)', 'downloads/MineshafterSquared-Client.jar', 'client', 3.8, '');
 
 -- --------------------------------------------------------
