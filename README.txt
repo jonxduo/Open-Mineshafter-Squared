@@ -19,9 +19,9 @@ on a computer you wish to use as the authentication server.
 
 Table of Contents
 	I. Installation
-		1. Database Setup
-		2. Config Setup
-		3. Upload Files
+		1. Upload Files
+		2. First connection
+		3. Installation page
 	II. Supported Web Browsers
 		1. Full Support
 		2. Semi-Support
@@ -32,43 +32,23 @@ Table of Contents
 =====================
 =  I. Installation  =
 =====================
-1. Database Setup
-	Currently the provided SQL file assumes an empty database
-	If you have tables in the database you are using that are
-	named the same as any that are used.  They will be dropped
-	and overridden.  You will loose data in that case.  An
-	"Update" sql file is in the works.
-	a. Log into PHPMyAdmin
-	b. Create a new Database, name does not matter
-	c. Click on Import at the top
-	d. Select "Choose File" and navigate to the "setup" directory
-	e. Use "setupNewDatabase.sql"
-	f. Make sure Format is SQL otherwise defaults should be just fine
-
-2. Config Setup
-	a. Open up "config.php" found in the root directory of the
-		authentication server.
-	b. Change the following variables to use your MySQL login data.
-		1. $MySQL['username'] to a MySQL user you have setup for the site.
-		2. $MySQL['password'] to the password for that user.
-		3. $MySQL['database'] to the name of the database you setup.
-		
-	If you are not changing the directory structure of the authentication server
-	you do not need to edit anything else in this file.
-	
-	If you do want to change the directory structure, then read the comments 
-	it should be self-explanatory.
-
-3. Upload Files
+1. Upload Files
 	Use an FTP client such as FileZilla to upload everything 
 		EXCLUDING:
-		1. the setup directory (these files are not needed after initial setup)
-		2. readme.txt (you can upload it if you want but there is no point)
-		3. license.txt (this is for your records there is no need to upload it)
-4. Final Part
-                Chmod 'skins', 'capes', 'game/skins', and 'game/capes' to 777
-You are DONE! Use your favorite web browser to make sure the site works.  It should
-look similar to http://www.mineshaftersquared.com/MSOpen
+		1. readme.txt (you can upload it if you want but there is no point)
+		2. license.txt (this is for your records there is no need to upload it)
+
+2. First connection
+	a. open your browser and went to the url of your new site
+	b. the index file will redirect you to the installation page
+
+3. Installation page
+	the installation page is ugly. but will guide you in all.
+		a. fill in the fields (field "base url" for now is unnecessary, will perhaps in the future)
+		b. Click on the Install button
+	Everything is ready, have fun
+
+I hope I have made ​​things easier, a greeting, by jonxduo
 
 ================================
 =  II. Supported Web Browsers  =

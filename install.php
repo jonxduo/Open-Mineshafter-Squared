@@ -16,7 +16,7 @@
 			fclose($f);
 
 			if(installSql('setup/setupNewDatabase.sql')){
-				$msg='installazione eseguita con successo<br/><a href="#">Accedi al nuovo sito</a>';
+				echo 'After successful installation<br/><a href="#">Accedi al nuovo sito</a>';
 			}
 	}
 
