@@ -33,7 +33,7 @@ if((float)getVersion("client") == (float)$_GET['proxy']){
   if(authenticateUser($_POST['user'], $_POST['password'])){
     $sessid = generateSessionId();
     $query='
-      Update  `'.$MySQL['database'].'`.`Users`
+      Update  `PREFIX__Users`
       Set     session = "'.$sessid.'",
 	      lastGameLogin = "'.time().'"
       Where   username = "'.mysql_real_escape_string($_POST['user']).'"

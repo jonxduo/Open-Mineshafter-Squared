@@ -26,8 +26,8 @@ SET time_zone = "+00:00";
 -- Table structure for table `ActiveCape`
 --
 
-DROP TABLE IF EXISTS `ActiveCape`;
-CREATE TABLE IF NOT EXISTS `ActiveCape` (
+DROP TABLE IF EXISTS `PREFIX__ActiveCape`;
+CREATE TABLE IF NOT EXISTS `PREFIX__ActiveCape` (
   `userId` int(11) NOT NULL,
   `capeId` int(11) NOT NULL,
   UNIQUE KEY `userId` (`userId`)
@@ -39,8 +39,8 @@ CREATE TABLE IF NOT EXISTS `ActiveCape` (
 -- Table structure for table `ActiveSkin`
 --
 
-DROP TABLE IF EXISTS `ActiveSkin`;
-CREATE TABLE IF NOT EXISTS `ActiveSkin` (
+DROP TABLE IF EXISTS `PREFIX__ActiveSkin`;
+CREATE TABLE IF NOT EXISTS `PREFIX__ActiveSkin` (
   `userId` int(11) DEFAULT NULL,
   `skinId` int(11) DEFAULT NULL,
   UNIQUE KEY `userId` (`userId`)
@@ -52,8 +52,8 @@ CREATE TABLE IF NOT EXISTS `ActiveSkin` (
 -- Table structure for table `Capes`
 --
 
-DROP TABLE IF EXISTS `Capes`;
-CREATE TABLE IF NOT EXISTS `Capes` (
+DROP TABLE IF EXISTS `PREFIX__Capes`;
+CREATE TABLE IF NOT EXISTS `PREFIX__Capes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -68,8 +68,8 @@ CREATE TABLE IF NOT EXISTS `Capes` (
 -- Table structure for table `Data`
 --
 
-DROP TABLE IF EXISTS `Data`;
-CREATE TABLE IF NOT EXISTS `Data` (
+DROP TABLE IF EXISTS `PREFIX__Data`;
+CREATE TABLE IF NOT EXISTS `PREFIX__Data` (
   `property` varchar(255) DEFAULT NULL,
   `value` varchar(255) DEFAULT NULL,
   UNIQUE KEY `property` (`property`)
@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `Data` (
 -- Dumping data for table `Data`
 --
 
-INSERT INTO `Data` (`property`, `value`) VALUES
+INSERT INTO `PREFIX__Data` (`property`, `value`) VALUES
 ('client-version', '3.8.0'),
 ('server-version', '3.8.0'),
 ('latest-game-version', '1.3.2'),
@@ -91,8 +91,8 @@ INSERT INTO `Data` (`property`, `value`) VALUES
 -- Table structure for table `Downloads`
 --
 
-DROP TABLE IF EXISTS `Downloads`;
-CREATE TABLE IF NOT EXISTS `Downloads` (
+DROP TABLE IF EXISTS `PREFIX__Downloads`;
+CREATE TABLE IF NOT EXISTS `PREFIX__Downloads` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `Downloads` (
 -- Dumping data for table `Downloads`
 --
 
-INSERT INTO `Downloads` (`id`, `name`, `description`, `link`, `type`, `version`, `external`) VALUES
+INSERT INTO `PREFIX__Downloads` (`id`, `name`, `description`, `link`, `type`, `version`, `external`) VALUES
 (7, 'Windows Launcher', 'The Windows proxy client.', 'downloads/MineshafterSquared-Client.exe', 'client', 3.8, ''),
 (2, 'Server Proxy', 'The program that makes a Minecraft Server to use this Authentication Server ', 'downloads/MineshafterSquared-Server.jar', 'main', 3.8, ''),
 (3, 'Authentication Server', 'PHP and MySQL based Minecraft Authentication Server', 'https://github.com/KayoticSully/Open-Mineshafter-Squared/zipball/master', 'main', 2, 'GitHub*'),
@@ -121,8 +121,8 @@ INSERT INTO `Downloads` (`id`, `name`, `description`, `link`, `type`, `version`,
 -- Table structure for table `Skins`
 --
 
-DROP TABLE IF EXISTS `Skins`;
-CREATE TABLE IF NOT EXISTS `Skins` (
+DROP TABLE IF EXISTS `PREFIX__Skins`;
+CREATE TABLE IF NOT EXISTS `PREFIX__Skins` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
@@ -135,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `Skins` (
 -- Dumping data for table `Skins`
 --
 
-INSERT INTO `Skins` (`id`, `userId`, `name`, `description`, `link`) VALUES
+INSERT INTO `PREFIX__Skins` (`id`, `userId`, `name`, `description`, `link`) VALUES
 (1, 0, 'Default', 'Default Minecraft Skin', 'Default.png');
 
 -- --------------------------------------------------------
@@ -144,8 +144,8 @@ INSERT INTO `Skins` (`id`, `userId`, `name`, `description`, `link`) VALUES
 -- Table structure for table `Users`
 --
 
-DROP TABLE IF EXISTS `Users`;
-CREATE TABLE IF NOT EXISTS `Users` (
+DROP TABLE IF EXISTS `PREFIX__Users`;
+CREATE TABLE IF NOT EXISTS `PREFIX__Users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,

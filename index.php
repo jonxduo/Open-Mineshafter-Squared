@@ -1,4 +1,5 @@
-<!----------------------------------------------------------------------------
+<?php
+/*----------------------------------------------------------------------------
     File: index.php
     Description: The homepage for Mineshafter Squared.
     
@@ -22,9 +23,11 @@
     
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
------------------------------------------------------------------------------->
-<?php
-    require_once 'scripts/session.php';
+------------------------------------------------------------------------------*/
+require_once 'scripts/session.php';
+if(!file_exists("config.php")){
+    include('install.php');
+}else{
     require_once 'scripts/siteBuilder.php';
     
     buildHead('Home');
@@ -105,5 +108,6 @@
     </div>
     <?php
     buildFoot();
+}
 ?>
 

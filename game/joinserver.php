@@ -31,7 +31,7 @@ require_once '../scripts/functions.php';
 
 $query='
     Select username
-    From   `'.$MySQL['database'].'`.`Users`
+    From   `PREFIX__Users`
     Where   session = "'.mysql_real_escape_string($_GET['sessionId']).'"
     And     username = "'.mysql_real_escape_string($_GET['user']).'"
     And     server = "'.mysql_real_escape_string($_GET['serverId']).'";
@@ -43,7 +43,7 @@ if(mysql_num_rows($resource) == 1){
     echo "OK";
 } else {
     $query='
-          Update  	`'.$MySQL['database'].'`.`Users`
+          Update  	`PREFIX__Users`
           Set      	server = "'.mysql_real_escape_string($_GET['serverId']).'"
           Where	        username = "'.mysql_real_escape_string($_GET['user']).'"
           And       session = "'.mysql_real_escape_string($_GET['sessionId']).'"

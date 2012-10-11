@@ -1,4 +1,5 @@
-<!----------------------------------------------------------------------------
+<?php
+/*----------------------------------------------------------------------------
     File: skins.php
     Description: The skin management page
     
@@ -22,8 +23,8 @@
     
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
------------------------------------------------------------------------------->
-<?php
+------------------------------------------------------------------------------*/
+
     require_once 'scripts/session.php';
     require_once 'scripts/siteBuilder.php';
     
@@ -41,7 +42,7 @@
                     
                     if(move_uploaded_file($_FILES['fileUpload']['tmp_name'], $targetPath)){
                         $query='
-                            Insert Into `'.$MySQL['database'].'`.`Skins`
+                            Insert Into `PREFIX__Skins`
                             (name, userId, description, link)
                             Values
                             ("'.$_POST['skinName'].'", "'.$_SESSION['userId'].'", "'.$_POST['skinDesc'].'", "'.basename($targetPath).'");

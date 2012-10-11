@@ -33,14 +33,16 @@
  * functions.php
  **/
 $MySQL = array();
-$MySQL['url']         = "localhost";
+$MySQL['url']         = "HOST";
 $MySQL['username']    = "USERNAME"; // be secure, please do not use root
 $MySQL['password']    = 'PASSWORD';
 $MySQL['database']    = "DATABASENAME";
+$MySQL['prefix']    = "PREFIX";
 
 $MySQL['link']        = mysql_connect($MySQL['url'],
                                       $MySQL['username'],
                                       $MySQL['password']) or die("Could not connect to: ".$MySQL['url'].", Error: ".mysql_error());
+$MySQL['select']      = mysql_select_db($MySQL['database'], $MySQL['link']);
 
 /**
  * Defaults
@@ -61,6 +63,7 @@ $config['authURL'] = 'http://login.minecraft.net'; // the url to connect to Mine
  * 
  * Stuff the website needs to function and keep things secure.
  **/
+$config['baseUrl'] = 'BASEURL';
 $config['sanitizeCharacters'] = array('/', '\\', '-', '\'', '\"');
 $config['skinsLocation'] = "game/skins/"; // where do you want all skins to be stored
 $config['skinsWorkingLocation'] = "skins/"; // where are the skins stored in relation to getskin.php

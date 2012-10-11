@@ -1,4 +1,5 @@
-<!----------------------------------------------------------------------------
+<?php
+/*----------------------------------------------------------------------------
     File: downloads.php
     Description: The page that offers downloads for Mineshafter Squared
     
@@ -22,8 +23,8 @@
     
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
------------------------------------------------------------------------------->
-<?php
+------------------------------------------------------------------------------*/
+
     require_once 'scripts/session.php';
     require_once 'scripts/siteBuilder.php';
     require_once "scripts/Browser.php";

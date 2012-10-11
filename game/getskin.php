@@ -31,8 +31,8 @@
     /* Query to select skin links for this particular player */
     $query = '
         Select  link
-        From    `'.$MySQL['database'].'`.`ActiveSkin` AS ActiveSkin
-                Left Join (`'.$MySQL['database'].'`.`Users` AS Users, `'.$MySQL['database'].'`.`Skins` AS Skins)
+        From    `PREFIX__ActiveSkin` AS ActiveSkin
+                Left Join (`PREFIX__Users` AS Users, `PREFIX__Skins` AS Skins)
                 On (ActiveSkin.userId = Users.id AND ActiveSkin.skinId = Skins.id)
         Where   Users.username = "'.mysql_real_escape_string($_GET['name']).'";
     ';

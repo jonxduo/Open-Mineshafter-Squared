@@ -25,10 +25,10 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -----------------------------------------------------------------------------*/
 
-if(file_exists("scripts/functions.php")){
+if(file_exists("config.php")){
     require_once "config.php";
     require_once "scripts/functions.php";
-} else if(file_exists("functions.php")){
+} else if(file_exists("../config.php")){
     require_once "../config.php";
     require_once "functions.php";
 }

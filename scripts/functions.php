@@ -39,6 +39,7 @@
  **/
 function runQuery($query, $returnType="resource") {
     global $MySQL;
+    $query=str_replace('PREFIX__', $MySQL['prefix'], $query);
     
     if (strlen($query) > 0) {
         $resource = mysql_query($query, $MySQL['link']) or die("Query: ".$query.", Error: ".mysql_error());
@@ -83,7 +84,7 @@ function getDownloads($type){
     
     $query='
         Select      *
-        From        `'.$MySQL['database'].'`.`Downloads`
+        From        `PREFIX__Downloads`
         Where       type = "'.$type.'"
         Order By    id ASC;
     ';
@@ -113,7 +114,7 @@ function authenticateUser($name, $pass){
     
     $query='
         Select  username
-        From    `'.$MySQL['database'].'`.`Users`
+        From    `PREFIX__Users`
         Where   username = "'.mysql_real_escape_string($name).'"
         And     password = "'.mysql_real_escape_string($hashpass).'"
     ';
@@ -196,7 +197,7 @@ function loginUser($userIdentification){
     
     $query = '
         Select 	username, id
-        From    `'.$MySQL['database'].'`.`Users`
+        From    `PREFIX__Users`
     ';
     
     if(is_numeric($userIdentification)){
@@ -230,7 +231,7 @@ function loginUser($userIdentification){
         if(!$numericInput){
         /* Set Time */
             $query = '
-                Update  `'.$MySQL['database'].'`.`Users`
+                Update  `PREFIX__Users`
                 Set	    lastWebLogin = "'.$_SESSION['time'].'"
                 Where   id = "'.$_SESSION['userId'].'"
             ';
@@ -258,7 +259,7 @@ function createNewUser($user, $password){
     
     $query = '
 	Select 	id
-	From	`'.$MySQL['database'].'`.`Users`
+	From	`PREFIX__Users`
 	Where	username = "'.mysql_real_escape_string($user).'"
     ';
     
@@ -268,7 +269,7 @@ function createNewUser($user, $password){
     if(mysql_num_rows($resource) == 1){
 	$record = mysql_fetch_assoc($resource);
 	$query = '
-	    Update      `'.$MySQL['database'].'`.`Users`
+	    Update      `PREFIX__Users`
 	    Set		password = "'.hash("sha256", mysql_real_escape_string($password)).'"
 	    Where	id = "'.$record['id'].'"
 	';
@@ -277,7 +278,7 @@ function createNewUser($user, $password){
 	
     } elseif(mysql_num_rows($resource) == 0){
 	$query = '
-	    Insert Into `'.$MySQL['database'].'`.`Users`
+	    Insert Into `PREFIX__Users`
 	    (username, password, createDate)
 	    Values
 	    ("'.mysql_real_escape_string($user).'", "'.hash("sha256", mysql_real_escape_string($password)).'", "'.time().'")
@@ -304,7 +305,7 @@ function getSkins(){
     if(isset($_SESSION['userId'])){
 	$query = '
 	    Select 	*
-	    From	`'.$MySQL['database'].'`.`Skins`
+	    From	`PREFIX__Skins`
 	    Where	userId = "'.mysql_real_escape_string($_SESSION['userId']).'"
 	    Order By	name ASC
 	';
@@ -333,7 +334,7 @@ function getCapes(){
     if(isset($_SESSION['userId'])){
 	$query = '
 	    Select 	*
-	    From	`'.$MySQL['database'].'`.`Capes`
+	    From	`PREFIX__Capes`
 	    Where	userId = "'.mysql_real_escape_string($_SESSION['userId']).'"
 	    Order By	name ASC
 	';
@@ -372,7 +373,7 @@ function deleteSkin($skinId){
     // Delete File
     $query='
 	Select  link
-	From `'.$MySQL['database'].'`.`Skins`
+	From `PREFIX__Skins`
 	Where   userId = "'.$_SESSION['userId'].'"
 	And     id = "'.mysql_real_escape_string($skinId).'";
     ';
@@ -386,7 +387,7 @@ function deleteSkin($skinId){
     if($delete){
 	// Delete Record
 	$query='
-	    Delete  From `'.$MySQL['database'].'`.`Skins`
+	    Delete  From `PREFIX__Skins`
 	    Where   userId = "'.$_SESSION['userId'].'"
 	    And     id = "'.mysql_real_escape_string($skinId).'";
 	';
@@ -423,7 +424,7 @@ function deleteCape($capeId){
     // Delete File
     $query='
 	Select  link
-	From `'.$MySQL['database'].'`.`Capes`
+	From `PREFIX__Capes`
 	Where   userId = "'.$_SESSION['userId'].'"
 	And     id = "'.mysql_real_escape_string($capeId).'";
     ';
@@ -437,7 +438,7 @@ function deleteCape($capeId){
     if($delete){
 	// Delete Record
 	$query='
-	    Delete  From `'.$MySQL['database'].'`.`Capes`
+	    Delete  From `PREFIX__Capes`
 	    Where   userId = "'.$_SESSION['userId'].'"
 	    And     id = "'.mysql_real_escape_string($capeId).'";
 	';
@@ -463,8 +464,8 @@ function getActiveSkin(){
     
     $query='
         Select      id, name, description, link, Skins.userId as userId
-        From        `'.$MySQL['database'].'`.`ActiveSkin` AS ActiveSkin
-        Left Join   (`'.$MySQL['database'].'`.`Skins` AS Skins)
+        From        `PREFIX__ActiveSkin` AS ActiveSkin
+        Left Join   (`PREFIX__Skins` AS Skins)
         On          (ActiveSkin.skinId = Skins.id)
         Where       ActiveSkin.userId = "'.mysql_real_escape_string($_SESSION['userId']).'";
     ';
@@ -475,7 +476,7 @@ function getActiveSkin(){
         
         $query='
             Select      id, name, description, link
-            From        `'.$MySQL['database'].'`.`Skins`
+            From        `PREFIX__Skins`
             Where       userId = "0";
         ';
         
@@ -504,8 +505,8 @@ function getActiveCape(){
     
     $query='
         Select      id, name, description, link, Capes.userId as userId
-        From        `'.$MySQL['database'].'`.`ActiveCape` AS ActiveCape
-        Left Join   (`'.$MySQL['database'].'`.`Capes` AS Capes)
+        From        `PREFIX__ActiveCape` AS ActiveCape
+        Left Join   (`PREFIX__Capes` AS Capes)
         On          (ActiveCape.capeId = Capes.id)
         Where       ActiveCape.userId = "'.mysql_real_escape_string($_SESSION['userId']).'";
     ';
@@ -516,7 +517,7 @@ function getActiveCape(){
         
         $query='
             Select      id, name, description, link
-            From        `'.$MySQL['database'].'`.`Capes`
+            From        `PREFIX__Capes`
             Where       userId = "0";
         ';
         
@@ -544,7 +545,7 @@ function resetUserSkin(){
     
     if($skin['id'] != 1){
         $query='
-            Update  `'.$MySQL['database'].'`.`ActiveSkin`
+            Update  `PREFIX__ActiveSkin`
             Set     skinId = "1"
             Where   userId = "'.mysql_real_escape_string($_SESSION['userId']).'";
         ';
@@ -555,7 +556,7 @@ function resetUserSkin(){
         
         if($affected == 0){
             $query='
-                Insert Into `'.$MySQL['database'].'`.`ActiveSkin`
+                Insert Into `PREFIX__ActiveSkin`
                 (userId, skinId)
                 Values
                 ("'.mysql_real_escape_string($_SESSION['userId']).'", "1");
@@ -578,7 +579,7 @@ function resetUserCape(){
     
     if($skin['id'] != 1){
         $query='
-            Update  `'.$MySQL['database'].'`.`ActiveCape`
+            Update  `PREFIX__ActiveCape`
             Set     capeId = "1"
             Where   userId = "'.mysql_real_escape_string($_SESSION['userId']).'";
         ';
@@ -589,7 +590,7 @@ function resetUserCape(){
         
         if($affected == 0){
             $query='
-                Insert Into `'.$MySQL['database'].'`.`ActiveCape`
+                Insert Into `PREFIX__ActiveCape`
                 (userId, capeId)
                 Values
                 ("'.mysql_real_escape_string($_SESSION['userId']).'", "1");
@@ -611,7 +612,7 @@ function setActiveSkin($skinId){
     
     if($skinId != null){
 	$query='
-	    Update  `'.$MySQL['database'].'`.`ActiveSkin`
+	    Update  `PREFIX__ActiveSkin`
 	    Set	      skinId = "'.mysql_real_escape_string($skinId).'"
 	    Where     userId = "'.mysql_real_escape_string($_SESSION['userId']).'";
 	';
@@ -621,7 +622,7 @@ function setActiveSkin($skinId){
 	
 	if($affected == 0){
 	    $query='
-		Insert Into `'.$MySQL['database'].'`.`ActiveSkin`
+		Insert Into `PREFIX__ActiveSkin`
 		(userId, skinId)
 		Values
 		("'.mysql_real_escape_string($_SESSION['userId']).'", "'.mysql_real_escape_string($skinId).'");
@@ -642,7 +643,7 @@ function setActiveCape($capeId){
     
     if($capeId != null){
 	$query='
-	    Update  `'.$MySQL['database'].'`.`ActiveCape`
+	    Update  `PREFIX__ActiveCape`
 	    Set	    capeId = "'.mysql_real_escape_string($capeId).'"
 	    Where     userId = "'.$_SESSION['userId'].'";
 	';
@@ -652,7 +653,7 @@ function setActiveCape($capeId){
 	
 	if($affected == 0){
 	    $query='
-		Insert Into `'.$MySQL['database'].'`.`ActiveCape`
+		Insert Into `PREFIX__ActiveCape`
 		(userId, capeId)
 		Values
 		("'.mysql_real_escape_string($_SESSION['userId']).'", "'.mysql_real_escape_string($capeId).'");
@@ -672,7 +673,7 @@ function getVersion($type){
     global $MySQL;
     $query = '
         Select	value
-        From	`'.$MySQL['database'].'`.`Data`
+        From	`PREFIX__Data`
         Where	property = "'.mysql_real_escape_string($type).'-version"
     ';
 
@@ -691,7 +692,7 @@ function checkForGameUpdate($currentBuild){
     
     $query = '
         Select	property, value
-        From	`'.$MySQL['database'].'`.`Data`
+        From	`PREFIX__Data`
         Where	property = "latest-game-build"
 	OR	property = "latest-game-version"
     ';
@@ -734,7 +735,7 @@ function generateSessionId(){
     /* Check to see if it is un use */
     $query = '
         Select  session
-        From    `'.$MySQL['database'].'`.`Users`
+        From    `PREFIX__Users`
         Where   session = '.$randNum.'
     ';
     
@@ -759,7 +760,7 @@ function getGameInfo($type){
 	case 'version':
 	    $query='
 		Select  property, value
-		From    `'.$MySQL['database'].'`.`Data`
+		From    `PREFIX__Data`
 		Where   property = "latest-game-version";
 	    ';
 	    $resource = mysql_fetch_assoc(runQuery($query));
@@ -769,7 +770,7 @@ function getGameInfo($type){
 	case 'build':
 	    $query='
 		Select  property, value
-		From    `'.$MySQL['database'].'`.`Data`
+		From    `PREFIX__Data`
 		Where   property = "latest-game-build";
 	    ';
 	    $resource = mysql_fetch_assoc(runQuery($query));
@@ -779,7 +780,7 @@ function getGameInfo($type){
         case 'client':
 	    $query='
 		Select  property, value
-		From    `'.$MySQL['database'].'`.`Data`
+		From    `PREFIX__Data`
 		Where   property = "client-version";
 	    ';
 	    $resource = mysql_fetch_assoc(runQuery($query));
@@ -789,7 +790,7 @@ function getGameInfo($type){
         case 'server':
 	    $query='
 		Select  property, value
-		From    `'.$MySQL['database'].'`.`Data`
+		From    `PREFIX__Data`
 		Where   property = "server-version";
 	    ';
 	    $resource = mysql_fetch_assoc(runQuery($query));
@@ -799,7 +800,7 @@ function getGameInfo($type){
 	default:
 	    $query='
 		Select  property, value
-		From    `'.$MySQL['database'].'`.`Data`
+		From    `PREFIX__Data`
 		Where   property = "latest-game-build"
 		Or      property = "latest-game-version";
 	    ';

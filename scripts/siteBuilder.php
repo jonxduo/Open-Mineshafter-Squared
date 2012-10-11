@@ -161,4 +161,42 @@ function buildFoot($jsFiles=array()){
 	echo '<script type="text/javascript" src="js/'.$file.'"></script>'."\n";
     }
 }
+
+/**
+ * buildInstallHead(string $pageTitle [, array $cssFiles]) - builds the top of the site.
+ *
+ * $pageTitle - Title of the page.
+ * $cssFiles - array of src's for css files to be included on the page.
+ **/
+function buildInstallHead($pageTitle, $cssFiles=array()){
+    ?>
+    <!DOCTYPE html>
+
+    <html>
+    <head>
+        <title>
+            <?php
+                echo $pageTitle;
+            ?>
+        </title>
+        <!--CSS-->
+        <link rel="stylesheet" type="text/css" href="css/appwide.css" />
+        <?php
+        /* Includes css files */
+        foreach($cssFiles as $file){
+            echo '<link rel="stylesheet" type="text/css" href="css/'.$file.'" />';
+        }
+        ?>
+    </head>
+    <body>
+        <div id="AppWrapper">
+	    <div id="siteTop">
+		<div id="banner">
+		    <img src="images/MineshafterSquaredLogo.png" alt="Mineshafter Squared Banner" />
+		    <h2>Install Database</h2>
+		</div>
+	    </div>
+	    <div id="siteMid">
+    <?php
+}
 ?>
