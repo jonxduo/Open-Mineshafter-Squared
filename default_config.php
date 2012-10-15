@@ -39,6 +39,8 @@ $MySQL['password']    = 'PASSWORD';
 $MySQL['database']    = "DATABASENAME";
 $MySQL['prefix']    = "PREFIX";
 
+$MySqli=new mysqli($MySQL['url'], $MySQL['username'], $MySQL['password'], $MySQL['database']);
+
 $MySQL['link']        = mysql_connect($MySQL['url'],
                                       $MySQL['username'],
                                       $MySQL['password']) or die("Could not connect to: ".$MySQL['url'].", Error: ".mysql_error());

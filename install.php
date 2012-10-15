@@ -44,21 +44,13 @@ function installSql ($sqlfile)
 {
 	require_once 'config.php';
 	require_once 'scripts/functions.php';
-	// estraggo il contenuto del file
-	$queries = file_get_contents($sqlfile);
-	// Rimuovo eventuali commenti
-	$queries = preg_replace(array('/\/\*.*(\n)*.*(\*\/)?/', '/\s*--.*\n/'), "\n", $queries);
-	// recupero le singole istruzioni
-	$statements = explode(";", $queries);
-	$statements = preg_replace("/\s/", ' ', $statements);
-	// ciclo le istruzioni
-	foreach ($statements as $query) {
-		$query=str_replace('PREFIX__', $MySQL['prefix'], $query);
-		$query = trim($query);
-		if ($query!=NULL) {
-			$resource = mysql_query($query, $MySQL['link']) or die("Query: ".$query.", Error: ".mysql_error());
-		}
-	}
-	return true;
+
+	$path = 'setup/';
+	$sql_filename = 'setupNewDatabase.sql';
+	$sql_contents = file_get_contents($path.$sql_filename);
+	$sql_contents = str_replace('PREFIX__', $MySQL['prefix'], $sql_contents);
+
+	if($MySqli->multi_query($sql_contents)) return true;
+	else return false;
 }
 ?>
